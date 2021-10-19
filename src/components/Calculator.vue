@@ -6,7 +6,9 @@
       = {{ result }}
     </div>
     <div class="keyboard">
-      <button @click="result = operand1 + operand2">+</button>
+      <button @click="result = parseInt(operand1) + parseInt(operand2)">
+        +
+      </button>
       <button @click="minus(operand1, operand2)">-</button>
       <button @click="divide(operand1, operand2)">/</button>
       <button @click="result = operand1 * operand2">*</button>
