@@ -42,7 +42,19 @@ export default {
       };
       //this.$emit("addNewPayment", data);
       this.newPayment(data);
+      this.$router.push({ path: "/dashboard/11" });
     },
+  },
+  mounted() {
+    const valueURL = this.$route.query.value;
+    const categoryURL = this.$route.name;
+    if (valueURL) {
+      this.value = Number(valueURL);
+    }
+    if (categoryURL) {
+      this.category = categoryURL;
+    }
+    this.date = this.getCurrentDate;
   },
 };
 </script>
