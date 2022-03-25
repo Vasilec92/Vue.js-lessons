@@ -2,7 +2,7 @@
   <div id="app">
     <header>
       <h2>My personal costs</h2>
-      <h3>Total value = {{ totalPayments }}</h3>
+      <!-- <h3>Total value = {{ totalPayments }}</h3> -->
     </header>
     <main>
       <button class="btn" @click="showForm">ADD NEW COST</button>
@@ -10,9 +10,8 @@
       <PaymentsDisplay :items="currentElements" />
       <Pagination
         @paginate="changePage"
-        :length="paymentList.length"
+        :length="Object.keys(paymentList).length"
         :cur="page"
-        :n="count"
       />
     </main>
   </div>
@@ -33,65 +32,38 @@ export default {
   },
   data() {
     return {
-      //paymentsList: [],
       show: false,
       page: 1,
-      count: 10,
     };
   },
   methods: {
     ...mapMutations({
       setPaymentsData: "setPaymentListData",
     }),
-    /* fetchData() {
-      return [
-        {
-          date: "28.03.2020",
-          category: "Food",
-          value: 169,
-        },
-        {
-          date: "24.03.2020",
-          category: "Transport",
-          value: 360,
-        },
-        {
-          date: "24.03.2020",
-          category: "Food",
-          value: 532,
-        },
-      ];
-    }, */
     addNewPayment(data) {
-      this.paymentsList = [...this.paymentsList, data];
+      this.paymentsList = [...this.paymentsList.page3, data];
     },
     showForm() {
       this.show = !this.show;
     },
     changePage(p) {
+      console.log(p);
       this.page = p;
     },
   },
   computed: {
     ...mapGetters({
       setPaymentListData: "getPaymentsList",
-      totalPayments: "getFullPaymentValue",
+      // totalPayments: "getFullPaymentValue",
       paymentList: "getPaymentsList",
       //category: "getCategoryList",
     }),
     currentElements() {
-      const { count, page } = this;
-      return this.paymentList.slice(
-        count * (page - 1),
-        count * (page - 1) + count
-      );
+      return this.paymentList[`page${this.page}`];
     },
   },
   created() {
     this.$store.dispatch("fetchData");
-    //this.setPaymentsData(this.fetchData());
-    //this.$store.commit("setPaymentListData", this.fetchData());
-    //this.paymentsList = this.fetchData();
   },
 };
 </script>

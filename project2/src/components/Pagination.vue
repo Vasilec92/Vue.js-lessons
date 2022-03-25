@@ -4,7 +4,7 @@
     <div
       class="page"
       :class="{ active: cur === i }"
-      v-for="i in amout"
+      v-for="i in length"
       :key="i"
       @click="onClick(i)"
     >
@@ -19,7 +19,6 @@ export default {
   name: "Pagination",
   props: {
     length: Number,
-    n: Number,
     cur: Number,
   },
   data() {
@@ -27,16 +26,8 @@ export default {
   },
   methods: {
     onClick(p) {
-      if (p < 1 || p > this.amout) {
-        return;
-      }
       console.log(p);
       this.$emit("paginate", p);
-    },
-  },
-  computed: {
-    amout() {
-      return Math.ceil(this.length / this.n);
     },
   },
 };
