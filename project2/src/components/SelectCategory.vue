@@ -1,6 +1,6 @@
 <template>
   <div>
-    <select :value="value" @change="onChange($event)">
+    <select v-model="this.$route.params.category" @change="onChange($event)">
       <option v-for="(option, idx) in getCategoryList" :key="idx">
         {{ option }}
       </option>
@@ -12,16 +12,6 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "SelectCategory",
-  props: {
-    value: {
-      type: String,
-    },
-  },
-  data() {
-    return {
-      selected: "",
-    };
-  },
   computed: {
     ...mapGetters(["getCategoryList"]),
   },

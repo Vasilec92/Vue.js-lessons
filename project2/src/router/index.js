@@ -20,20 +20,11 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: "/add/payment/Food",
-    name: "Food",
+    path: "/add/payment/:category",
+    name: "FooAddPaymentd",
     component: AddPayment,
   },
-  {
-    path: "/add/payment/Transport",
-    name: "Transport",
-    component: AddPayment,
-  },
-  {
-    path: "/add/payment/Entertainment",
-    name: "Entertainmen",
-    component: AddPayment,
-  },
+
   {
     path: "/about*",
     name: "About",

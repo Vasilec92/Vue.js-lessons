@@ -46,14 +46,8 @@ export default {
     },
   },
   mounted() {
-    const valueURL = this.$route.query.value;
-    const categoryURL = this.$route.name;
-    if (valueURL) {
-      this.value = Number(valueURL);
-    }
-    if (categoryURL) {
-      this.category = categoryURL;
-    }
+    this.category = this.$route.params.category;
+    this.value = this.$route.query.value;
     this.date = this.getCurrentDate;
   },
 };

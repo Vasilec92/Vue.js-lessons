@@ -11,7 +11,7 @@
         >Add payment Transport</router-link
       >
       /
-      <router-link to="/add/payment/Entertainment"
+      <router-link to="/add/payment/Entertainmen"
         >Add payment Entertainment</router-link
       >
     </nav>
