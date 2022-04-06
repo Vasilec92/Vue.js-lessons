@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <header>
+    <!-- <header>
       <h2>My personal costs</h2>
       <h3>Total value = {{ totalPayments }}</h3>
-    </header>
+    </header> -->
     <main>
       <button class="btn" @click="showForm">ADD NEW COST</button>
       <AddPaymentForm v-if="show" @addNewPayment="addNewPayment" />

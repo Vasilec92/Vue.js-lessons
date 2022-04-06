@@ -6,11 +6,16 @@
           <th>Date</th>
           <th>Category</th>
           <th>Value</th>
+          <th>Actions</th>
         </tr>
         <tr v-for="(item, idx) in items" :key="idx">
           <td>{{ item.date }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.value }}</td>
+          <td class="action" @click="onClickContextItem($event, item, idx)">
+            ...
+          </td>
+          <td v-if="open"><EditPaymentForm :item="item" /></td>
         </tr>
       </table>
     </div>
@@ -18,12 +23,50 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+import EditPaymentForm from "../components/EditPaymentForm.vue";
 export default {
   name: "PaymentsDisplay",
+  components: { EditPaymentForm },
   props: {
     items: {
       type: Array,
       default: () => [],
+    },
+  },
+  data() {
+    return {
+      open: false,
+    };
+  },
+  methods: {
+    ...mapMutations({
+      delate: "delateDataToPaymentsList",
+    }),
+    editItem(item) {
+      console.log(item);
+    },
+    deleteItem(id) {
+      console.log(id);
+      this.delate(id);
+    },
+    onClickContextItem(event, item) {
+      const items = [
+        {
+          text: "Edit",
+          action: () => {
+            this.editItem(item);
+            this.open = true;
+          },
+        },
+        {
+          text: "Delete",
+          action: () => {
+            this.deleteItem(item.id);
+          },
+        },
+      ];
+      this.$contextMenu.show({ event, items });
     },
   },
 };
@@ -57,5 +100,10 @@ export default {
   text-align: left;
   background-color: #04aa6d;
   color: white;
+}
+.action {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
 }
 </style>

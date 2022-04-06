@@ -18,6 +18,9 @@ export default new Vuex.Store({
     setCategoryList(state, payload) {
       state.categoryList = payload;
     },
+    delateDataToPaymentsList(state, id) {
+      state.paymentsList = state.paymentsList.filter((el) => el.id !== id);
+    },
   },
   getters: {
     getPaymentsList: (state) => state.paymentsList,
@@ -50,6 +53,7 @@ export default new Vuex.Store({
           const items = [];
           for (let i = 1; i < 101; i++) {
             items.push({
+              id: i,
               date: "28.03.2020",
               category: "Food",
               value: i,

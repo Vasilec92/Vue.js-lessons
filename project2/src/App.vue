@@ -18,13 +18,17 @@
     <main>
       <router-view />
     </main>
+    <transition name="fade">
+      <ContextMenu />
+    </transition>
   </div>
 </template>
 
 <script>
+import ContextMenu from "./components/ContextMenu.vue";
 export default {
   name: "App",
-  components: {},
+  components: { ContextMenu },
   created() {
     this.$store.dispatch("fetchData");
   },
