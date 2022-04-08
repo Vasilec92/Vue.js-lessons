@@ -5,10 +5,13 @@ import contextMenu from "./plugins/ContextMenu";
 
 // импортируем экземпляр роутера из листинга выше
 import router from "./router";
+
+import vuetify from './plugins/vuetify'
 Vue.config.productionTip = false;
 Vue.use(contextMenu);
 new Vue({
   store,
   router,
-  render: (h) => h(App),
+  vuetify,
+  render: (h) => h(App)
 }).$mount("#app");

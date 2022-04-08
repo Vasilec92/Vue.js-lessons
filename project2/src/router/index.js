@@ -5,14 +5,15 @@ import About from "../views/About.vue";
 import Auth from "../views/Auth.vue";
 import NotFound from "../views/NotFound.vue";
 import AddPayment from "../views/AddPayment.vue";
+import Table from "../components/Table.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Dashboard",
-    component: Dashboard,
+    name: "Table",
+    component: Table,
   },
   {
     path: "/dashboard/:page",

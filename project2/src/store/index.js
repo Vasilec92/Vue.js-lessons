@@ -21,6 +21,14 @@ export default new Vuex.Store({
     delateDataToPaymentsList(state, id) {
       state.paymentsList = state.paymentsList.filter((el) => el.id !== id);
     },
+    editData(state, payload) {
+      console.log(payload);
+      state.paymentsList.map((el, idx) => {
+        if (el?.id === payload?.id) {
+          Object.assign(state.paymentsList[idx], payload);
+        }
+      });
+    },
   },
   getters: {
     getPaymentsList: (state) => state.paymentsList,
