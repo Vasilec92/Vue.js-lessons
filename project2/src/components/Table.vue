@@ -32,10 +32,11 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
-                      <v-text-field
+                      <v-select
                         v-model="editedItem.category"
+                        :items="getCategoryList()"
                         label="Category"
-                      ></v-text-field>
+                      ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
@@ -95,6 +96,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Table",
   data: () => ({
@@ -155,8 +157,18 @@ export default {
     await this.$store.dispatch("fetchData");
     this.desserts = this.$store.getters.getPaymentsList;
   },
+  mounted() {
+    if (!this.getCategoryList?.length) {
+      this.fetchCategoryList();
+    }
+  },
 
   methods: {
+    ...mapGetters(["getCategoryList"]),
+    ...mapActions(["fetchCategoryList"]),
+    onChange(event) {
+      this.$emit("input", event.target.value);
+    },
     initialize() {
       this.desserts = this.$store.getters.getPaymentsList;
     },
@@ -176,7 +188,6 @@ export default {
 
     async deleteItemConfirm() {
       console.log(this.editedItem.id);
-      //this.desserts.splice(this.editedIndex, 1);
       await this.$store.commit("delateDataToPaymentsList", this.editedItem.id);
       this.initialize();
       this.closeDelete();
