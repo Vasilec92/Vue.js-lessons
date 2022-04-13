@@ -35,6 +35,50 @@ export default new Vuex.Store({
     getFullPaymentValue: (state) => {
       return state.paymentsList.reduce((res, cur) => res + cur.value, 0);
     },
+    getFullPaymentValueFood: (state) => {
+      const foods = state.paymentsList.filter((el) => el.category == "Food");
+      const res = foods.reduce((res, cur) => res + cur.value, 0);
+      console.log(res);
+      return res;
+    },
+    getFullPaymentValueSport: (state) => {
+      const sports = state.paymentsList.filter((el) => el.category == "Sport");
+      const res = sports.reduce((res, cur) => res + cur.value, 0);
+      console.log(res);
+      return res;
+    },
+    getFullPaymentValueE: (state) => {
+      const values = state.paymentsList.filter(
+        (el) => el.category == "Education"
+      );
+      const res = values.reduce((res, cur) => res + cur.value, 0);
+      console.log(res);
+      return res;
+    },
+    getFullPaymentValueI: (state) => {
+      const values = state.paymentsList.filter(
+        (el) => el.category == "Internet"
+      );
+      const res = values.reduce((res, cur) => res + cur.value, 0);
+      console.log(res);
+      return res;
+    },
+    getFullPaymentValueT: (state) => {
+      const values = state.paymentsList.filter(
+        (el) => el.category == "Transport"
+      );
+      const res = values.reduce((res, cur) => res + cur.value, 0);
+      console.log(res);
+      return res;
+    },
+    getFullPaymentValueEnt: (state) => {
+      const values = state.paymentsList.filter(
+        (el) => el.category == "Entertainment"
+      );
+      const res = values.reduce((res, cur) => res + cur.value, 0);
+      console.log(res);
+      return res;
+    },
     getCategoryList: (state) => state.categoryList,
   },
   actions: {
