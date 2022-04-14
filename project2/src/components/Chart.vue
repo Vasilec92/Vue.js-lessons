@@ -27,15 +27,20 @@ ChartJS.register(
 export default {
   name: "Chart",
   components: { Bar },
-  data() {
-    return {
-      initialized: false,
-      chartData: {
-        labels: [],
+  computed: {
+    chartData() {
+      return {
         datasets: [
           {
             label: "My costs",
-            data: [],
+            data: [
+              this.getFullPaymentValueSport(),
+              this.getFullPaymentValueFood(),
+              this.getFullPaymentValueE(),
+              this.getFullPaymentValueI(),
+              this.getFullPaymentValueT(),
+              this.getFullPaymentValueEnt(),
+            ],
             backgroundColor: [
               "rgb(255, 99, 132)",
               "rgb(54, 162, 235)",
@@ -47,7 +52,12 @@ export default {
             hoverOffset: 4,
           },
         ],
-      },
+      };
+    },
+  },
+  data() {
+    return {
+      initialized: false,
     };
   },
   methods: {

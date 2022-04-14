@@ -73,7 +73,7 @@ export default new Vuex.Store({
     },
     getFullPaymentValueEnt: (state) => {
       const values = state.paymentsList.filter(
-        (el) => el.category == "Entertainment"
+        (el) => el.category == "Entertainmen"
       );
       const res = values.reduce((res, cur) => res + cur.value, 0);
       console.log(res);
